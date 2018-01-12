@@ -4,6 +4,8 @@ math.config({
 });
 
 function calculate(){
+	// Get all data from form to variables
+
 	var p1p = document.getElementById("p1p").value;
 	var p2p = document.getElementById("p2p").value;
 	var p3p = document.getElementById("p3p").value;
@@ -54,16 +56,29 @@ function calculate(){
 	var p8s = document.getElementById("p8s").value;
 	var p9s = document.getElementById("p9s").value;
 
-	var p1vp = toMixedNumber(calculatePoints(p1p,p1o,p1lc,p1sc,p1s));
-	var p2vp = toMixedNumber(calculatePoints(p2p,p2o,p2lc,p2sc,p2s));
-	var p3vp = toMixedNumber(calculatePoints(p3p,p3o,p3lc,p3sc,p3s));
-	var p4vp = toMixedNumber(calculatePoints(p4p,p4o,p4lc,p4sc,p4s));
-	var p5vp = toMixedNumber(calculatePoints(p5p,p5o,p5lc,p5sc,p5s));
-	var p6vp = toMixedNumber(calculatePoints(p6p,p6o,p6lc,p6sc,p6s));
-	var p7vp = toMixedNumber(calculatePoints(p7p,p7o,p7lc,p7sc,p7s));
-	var p8vp = toMixedNumber(calculatePoints(p8p,p8o,p8lc,p8sc,p8s));
-	var p9vp = toMixedNumber(calculatePoints(p9p,p9o,p9lc,p9sc,p9s));
+	//Calculate points for each player
+	var p1vp = calculatePoints(p1p,p1o,p1lc,p1sc,p1s);
+	var p2vp = calculatePoints(p2p,p2o,p2lc,p2sc,p2s);
+	var p3vp = calculatePoints(p3p,p3o,p3lc,p3sc,p3s);
+	var p4vp = calculatePoints(p4p,p4o,p4lc,p4sc,p4s);
+	var p5vp = calculatePoints(p5p,p5o,p5lc,p5sc,p5s);
+	var p6vp = calculatePoints(p6p,p6o,p6lc,p6sc,p6s);
+	var p7vp = calculatePoints(p7p,p7o,p7lc,p7sc,p7s);
+	var p8vp = calculatePoints(p8p,p8o,p8lc,p8sc,p8s);
+	var p9vp = calculatePoints(p9p,p9o,p9lc,p9sc,p9s);
 
+	//Convert points to mixed numbers
+	p1vp = toMixedNumber(p1vp);
+	p2vp = toMixedNumber(p2vp);
+	p3vp = toMixedNumber(p3vp);
+	p4vp = toMixedNumber(p4vp);
+	p5vp = toMixedNumber(p5vp);
+	p6vp = toMixedNumber(p6vp);
+	p7vp = toMixedNumber(p7vp);
+	p8vp = toMixedNumber(p8vp);
+	p9vp = toMixedNumber(p9vp);
+	
+	//Update player scores to score fields
 	document.getElementById("p1vp").value = p1vp;
 	document.getElementById("p2vp").value = p2vp;
 	document.getElementById("p3vp").value = p3vp;
@@ -78,6 +93,7 @@ function calculate(){
 }
 
 function calculatePoints(p,o,lc,sc,s) {
+	//Treat blanks as zeros
 	if ( p == "") {
 		p = 0;
 	}
@@ -93,8 +109,9 @@ function calculatePoints(p,o,lc,sc,s) {
 	if ( s == "") {
 		s = 0;
 	}
-
-
+	
+	//Add points up. First basic points and then add all other points with
+	//	their multiplication factors
 	var points = p;
 	points = math.add(points, math.multiply(o,math.fraction(6,12)),
 		math.multiply(lc,math.fraction(4,12)), math.multiply(sc,
@@ -104,9 +121,12 @@ function calculatePoints(p,o,lc,sc,s) {
 }
 
 function toMixedNumber(fraction) {
+	//First get the integer part and then substract it from original number
+	//	to get the fraction part only
 	var integer = math.floor(math.divide(fraction.n,fraction.d));
 	fraction = math.subtract(fraction, integer);
 
+	//Expand that denominator is 12 in all cases that player might encounter.
 	if (fraction.d == 2) {
 	return integer + " " + fraction.n * 6 + "/" + fraction.d * 6;
 	}
@@ -125,3 +145,5 @@ function toMixedNumber(fraction) {
 	
 	return integer;
 }
+
+
