@@ -1,0 +1,111 @@
+var math = require('mathjs');
+math.config({
+  number: 'Fraction'
+});
+
+function calculate(){
+	var p1p = document.getElementById("p1p").value;
+	var p2p = document.getElementById("p2p").value;
+	var p3p = document.getElementById("p3p").value;
+	var p4p = document.getElementById("p4p").value;
+	var p5p = document.getElementById("p5p").value;
+	var p6p = document.getElementById("p6p").value;
+	var p7p = document.getElementById("p7p").value;
+	var p8p = document.getElementById("p8p").value;
+	var p9p = document.getElementById("p9p").value;
+
+	var p1o = document.getElementById("p1o").value;
+	var p2o = document.getElementById("p2o").value;
+	var p3o = document.getElementById("p3o").value;
+	var p4o = document.getElementById("p4o").value;
+	var p5o = document.getElementById("p5o").value;
+	var p6o = document.getElementById("p6o").value;
+	var p7o = document.getElementById("p7o").value;
+	var p8o = document.getElementById("p8o").value;
+	var p9o = document.getElementById("p9o").value;	
+
+	var p1lc = document.getElementById("p1lc").value;
+	var p2lc = document.getElementById("p2lc").value;
+	var p3lc = document.getElementById("p3lc").value;
+	var p4lc = document.getElementById("p4lc").value;
+	var p5lc = document.getElementById("p5lc").value;
+	var p6lc = document.getElementById("p6lc").value;
+	var p7lc = document.getElementById("p7lc").value;
+	var p8lc = document.getElementById("p8lc").value;
+	var p9lc = document.getElementById("p9lc").value;
+
+	var p1sc = document.getElementById("p1sc").value;
+	var p2sc = document.getElementById("p2sc").value;
+	var p3sc = document.getElementById("p3sc").value;
+	var p4sc = document.getElementById("p4sc").value;
+	var p5sc = document.getElementById("p5sc").value;
+	var p6sc = document.getElementById("p6sc").value;
+	var p7sc = document.getElementById("p7sc").value;
+	var p8sc = document.getElementById("p8sc").value;
+	var p9sc = document.getElementById("p9sc").value;
+
+	var p1s = document.getElementById("p1s").value;
+	var p2s = document.getElementById("p2s").value;
+	var p3s = document.getElementById("p3s").value;
+	var p4s = document.getElementById("p4s").value;
+	var p5s = document.getElementById("p5s").value;
+	var p6s = document.getElementById("p6s").value;
+	var p7s = document.getElementById("p7s").value;
+	var p8s = document.getElementById("p8s").value;
+	var p9s = document.getElementById("p9s").value;
+
+	var p1vp = calculatePoints(p1p,p1o,p1lc,p1sc,p1s);
+	p1vp = toMixedNumber(p1vp);
+	document.getElementById("p1vp").value = p1vp;
+
+	return true;
+}
+
+function calculatePoints(p,o,lc,sc,s) {
+	if ( p == "") {
+		p = 0;
+	}
+	if ( o == "") {
+		o = 0;
+	}
+	if ( lc == "") {
+		lc = 0;
+	}
+	if ( sc == "") {
+		sc = 0;
+	}
+	if ( s == "") {
+		s = 0;
+	}
+
+
+	var points = p;
+	points = math.add(points, math.multiply(o,math.fraction(6,12)),
+		math.multiply(lc,math.fraction(4,12)), math.multiply(sc,
+		math.fraction(3,12)), math.multiply(s,math.fraction(3,12)));
+
+	return points;
+}
+
+function toMixedNumber(fraction) {
+	var integer = math.floor(math.divide(fraction.n,fraction.d));
+	fraction = math.subtract(fraction, integer);
+
+	if (fraction.d == 2) {
+	return integer + " " + fraction.n * 6 + "/" + fraction.d * 6;
+	}
+
+	if (fraction.d == 3) {
+	return integer + " " + fraction.n * 4 + "/" + fraction.d * 4;
+	}	
+
+	if (fraction.d == 4) {
+	return integer + " " + fraction.n * 3 + "/" + fraction.d * 3;
+	}
+	
+	if (fraction.d == 6) {
+	return integer + " " + fraction.n * 2 + "/" + fraction.d * 2;
+	}
+	
+	return integer;
+}
