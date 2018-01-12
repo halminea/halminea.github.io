@@ -54,9 +54,25 @@ function calculate(){
 	var p8s = document.getElementById("p8s").value;
 	var p9s = document.getElementById("p9s").value;
 
-	var p1vp = calculatePoints(p1p,p1o,p1lc,p1sc,p1s);
-	p1vp = toMixedNumber(p1vp);
+	var p1vp = toMixedNumber(calculatePoints(p1p,p1o,p1lc,p1sc,p1s));
+	var p2vp = toMixedNumber(calculatePoints(p2p,p2o,p2lc,p2sc,p2s));
+	var p3vp = toMixedNumber(calculatePoints(p3p,p3o,p3lc,p3sc,p3s));
+	var p4vp = toMixedNumber(calculatePoints(p4p,p4o,p4lc,p4sc,p4s));
+	var p5vp = toMixedNumber(calculatePoints(p5p,p5o,p5lc,p5sc,p5s));
+	var p6vp = toMixedNumber(calculatePoints(p6p,p6o,p6lc,p6sc,p6s));
+	var p7vp = toMixedNumber(calculatePoints(p7p,p7o,p7lc,p7sc,p7s));
+	var p8vp = toMixedNumber(calculatePoints(p8p,p8o,p8lc,p8sc,p8s));
+	var p9vp = toMixedNumber(calculatePoints(p9p,p9o,p9lc,p9sc,p9s));
+
 	document.getElementById("p1vp").value = p1vp;
+	document.getElementById("p2vp").value = p2vp;
+	document.getElementById("p3vp").value = p3vp;
+	document.getElementById("p4vp").value = p4vp;
+	document.getElementById("p5vp").value = p5vp;
+	document.getElementById("p6vp").value = p6vp;
+	document.getElementById("p7vp").value = p7vp;
+	document.getElementById("p8vp").value = p8vp;
+	document.getElementById("p9vp").value = p9vp;
 
 	return true;
 }
