@@ -114,8 +114,8 @@ function calculatePoints(p,o,lc,sc,s) {
 	//	their multiplication factors
 	var points = p;
 	points = math.add(points, math.multiply(o,math.fraction(6,12)),
-		math.multiply(lc,math.fraction(4,12)), math.multiply(sc,
-		math.fraction(3,12)), math.multiply(s,math.fraction(3,12)));
+		math.multiply(lc,math.fraction(3,12)), math.multiply(sc,
+		math.fraction(2,12)), math.multiply(s,math.fraction(2,12)));
 
 	return points;
 }
