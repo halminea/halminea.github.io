@@ -112,38 +112,27 @@ function calculatePoints(p,o,lc,sc,s) {
 	
 	//Add points up. First basic points and then add all other points with
 	//	their multiplication factors
-	var points = p;
-	points = math.add(points, math.multiply(o,math.fraction(6,12)),
-		math.multiply(lc,math.fraction(4,12)), math.multiply(sc,
-		math.fraction(3,12)), math.multiply(s,math.fraction(3,12)));
-
+	var points = math.add(p,1/2 * o,3/12 * lc, 2/12 * sc, 2/12 *s);
 	return points;
 }
 
 function toMixedNumber(fraction) {
 	//First get the integer part and then substract it from original number
 	//	to get the fraction part only
-	var integer = math.floor(math.divide(fraction.n,fraction.d));
-	fraction = math.subtract(fraction, integer);
+	//var integer = math.floor(math.divide(fraction.n,fraction.d));
+    var integer = Math.floor(fraction);
+    fraction = fraction - integer;
+    
+    //Avoid having  0/12 at the end.
+    if (fraction == 0) {
+        return integer + "";
+    }
 
 	//Expand that denominator is 12 in all cases that player might encounter.
-	if (fraction.d == 2) {
-	return integer + " " + fraction.n * 6 + "/" + fraction.d * 6;
-	}
-
-	if (fraction.d == 3) {
-	return integer + " " + fraction.n * 4 + "/" + fraction.d * 4;
-	}	
-
-	if (fraction.d == 4) {
-	return integer + " " + fraction.n * 3 + "/" + fraction.d * 3;
-	}
+    fraction = Math.round(12 * fraction);
+    var number = integer + " " + fraction + "/" + "12"
 	
-	if (fraction.d == 6) {
-	return integer + " " + fraction.n * 2 + "/" + fraction.d * 2;
-	}
-	
-	return integer;
+	return number;
 }
 
 
