@@ -92,7 +92,8 @@
             color: #ffffff;
         }
 
-        textarea:focus, input:focus {
+        textarea:focus,
+        input:focus {
             outline: none;
     </style>
 </head>
@@ -107,6 +108,10 @@
             <div class="autocomplete">
                 <h1>Nimi:</h1>
                 <input type="text" id="nimi" name="nimi" onchange="getAbrv();" oninput="this.onchange();">
+            </div>
+            <div class="autocomplete">
+                <h1>Ratakm:</h1>
+                <input type="text" id="ratkm" name="ratakm">
             </div>
     </form>
     <script type="text/javascript">
@@ -1288,6 +1293,10 @@
             "Pitkäkallio": "Pio"
         };
 
+        var dict3 = {
+            
+        }
+
         var liikennepaikat = [
             "Ahonpää",
             "Ahvenus",
@@ -2467,7 +2476,7 @@
         var nimi = document.getElementById("nimi");
 
         function getName() {
-            if ( typeof dict[lyhenne.value] !== 'undefined' ) {
+            if (typeof dict[lyhenne.value] !== 'undefined') {
                 nimi.value = dict[lyhenne.value];
             }
         };
@@ -2581,8 +2590,8 @@
                 getName();
             });
 
-            document.addEventListener("keypress", function(e) {
-                if (e.keyCode === 13){
+            document.addEventListener("keypress", function (e) {
+                if (e.keyCode === 13) {
                     closeAllLists(e.target);
                     getAbrv();
                     getName();
